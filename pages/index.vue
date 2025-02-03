@@ -8,30 +8,30 @@
 </template>
 
 <script>
-import Header from "./Header.vue";
-import Container from "./index-components/Container.vue";
-import Section from "./index-components/Section.vue";
-import Footer from "./index-components/Footer.vue";
+  import Header from "./Header.vue";
+  import Container from "./index-components/Container.vue";
+  import Section from "./index-components/Section.vue";
+  import Footer from "./index-components/Footer.vue";
 
-export default {
-  name: "index",
-  components: {
-    Header,
-    Container,
-    Section,
-    Footer,
-  },
-  data() {
-    return {
-      selectedLanguage: localStorage.getItem("selectedLanguage") || "en",
-    };
-  },
-  methods: {
-    updateLanguage(locale) {
-      this.selectedLanguage = locale; // Dili güncelle
+  export default {
+    name: "index",
+    components: {
+      Header,
+      Container,
+      Section,
+      Footer,
     },
-  },
-};
+    data() {
+      return {
+        selectedLanguage: localStorage.getItem("selectedLanguage") || "en",
+      };
+    },
+    methods: {
+      updateLanguage(locale) {
+        this.selectedLanguage = locale; 
+      },
+    },
+  };
 </script>
 
 

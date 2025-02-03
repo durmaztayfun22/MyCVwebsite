@@ -23,50 +23,49 @@
 </template>
 
 <script>
-export default {
-  name: "Container",
-  props: {
-    selectedLanguage: {
-      type: String,
-      default: "en",
-    },
-  },
-  data() {
-    return {
-      paragraphs: [],
-      images: [
-        "https://strapi.tayfundurmaz.net/uploads/Basliksiz_2_3978e72a47.png",
-      ],
-    };
-  },
-  watch: {
-    selectedLanguage: {
-      immediate: true,
-      handler(newLocale) {
-        this.fetchData(newLocale);
+  export default {
+    name: "Container",
+    props: {
+      selectedLanguage: {
+        type: String,
+        default: "en",
       },
     },
-  },
-  methods: {
-    async fetchData(locale) {
-      const url =
-        locale === "tr"
-          ? "https://strapi.tayfundurmaz.net/api/nuxt-container?locale=tr"
-          : "https://strapi.tayfundurmaz.net/api/nuxt-container";
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-
-        // API'den gelen metinleri bir diziye dönüştür
-        this.paragraphs = [
-          data.data.attributes.p,
-        ];
-      } catch (error) {
-        console.error("Veri alınırken hata oluştu:", error);
-      }
+    data() {
+      return {
+        paragraphs: [],
+        images: [
+          "https://strapi.tayfundurmaz.net/uploads/Basliksiz_2_3978e72a47.png",
+        ],
+      };
     },
-  },
-};
+    watch: {
+      selectedLanguage: {
+        immediate: true,
+        handler(newLocale) {
+          this.fetchData(newLocale);
+        },
+      },
+    },
+    methods: {
+      async fetchData(locale) {
+        const url =
+          locale === "tr"
+            ? "https://strapi.tayfundurmaz.net/api/nuxt-container?locale=tr"
+            : "https://strapi.tayfundurmaz.net/api/nuxt-container";
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+
+          this.paragraphs = [
+            data.data.attributes.p,
+          ];
+        } catch (error) {
+          console.error("Veri alınırken hata oluştu:", error);
+        }
+      },
+    },
+  };
 </script>
 
 <style scoped>
@@ -75,9 +74,9 @@ export default {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh; /* Tam ekran yüksekliği */
-    background-color: rgb(104, 104, 104); /* Arka plan rengi */
-    font-family: 'Arial', sans-serif; /* Modern bir yazı tipi */
+    height: 100vh;
+    background-color: rgb(104, 104, 104); 
+    font-family: 'Arial', sans-serif; 
     padding: 20px;
   }
 
@@ -85,15 +84,15 @@ export default {
     display: flex;
     max-width: 1200px;
     width: 100%;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Hafif gölge */
-    border-radius: 10px; /* Yuvarlatılmış köşeler */
-    overflow: hidden; /* Taşmaları gizle */
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px; 
+    overflow: hidden; 
     background-color: white;
-    transition: transform 0.3s ease; /* Geçiş animasyonu */
+    transition: transform 0.3s ease;
   }
 
   .container-body:hover {
-    transform: scale(1.1); /* %10 büyütme */
+    transform: scale(1.1); 
   }
 
   .container-block {
@@ -122,7 +121,7 @@ export default {
   }
 
   .container-block-2-body-image {
-    position: relative; /* Set to relative to allow positioning of the overlay within it */
+    position: relative; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,21 +130,19 @@ export default {
   }
 
   .image-overlay {
-    position: absolute; /* Ensure it positions over the image */
+    position: absolute; 
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: transparent; /* Şeffaf bırakılıyor */
-    z-index: 1; /* Place on top of the image */
+    background: transparent; 
+    z-index: 1;
   }
 
   .container-block-2-body-image img {
     width: 100%;
     height: auto;
     object-fit: cover;
-    border-left: 5px solid #ddd; /* Separation between image and text */
+    border-left: 5px solid #ddd; 
   }
-
-
 </style>

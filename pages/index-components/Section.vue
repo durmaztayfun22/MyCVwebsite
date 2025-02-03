@@ -13,61 +13,60 @@
 </template>
 
 <script>
-export default {
-  name: "Section",
-  props: {
-    selectedLanguage: {
-      type: String,
-      default: "en",
-    },
-  },
-  data() {
-    return {
-      paragraphs: [],
-      images: [
-        "https://strapi.tayfundurmaz.net/uploads/java_Script_e27b16d476.png",
-        "https://strapi.tayfundurmaz.net/uploads/node_JS_9b0d3724cb.jpg",
-        "https://strapi.tayfundurmaz.net/uploads/reactjs7_d3941e0343.jpg",
-        "https://strapi.tayfundurmaz.net/uploads/react_Native_de0cd31d41.png",
-        "https://strapi.tayfundurmaz.net/uploads/next_JS_1348bc3310.jpeg",
-        "https://strapi.tayfundurmaz.net/uploads/php_aa1eafebb8.jpg",
-        "https://strapi.tayfundurmaz.net/uploads/python_9477997afe.jpg",
-      ],
-    };
-  },
-  watch: {
-    selectedLanguage: {
-      immediate: true,
-      handler(newLocale) {
-        this.fetchData(newLocale);
+  export default {
+    name: "Section",
+    props: {
+      selectedLanguage: {
+        type: String,
+        default: "en",
       },
     },
-  },
-  methods: {
-    async fetchData(locale) {
-      const url =
-        locale === "tr"
-          ? "https://strapi.tayfundurmaz.net/api/nuxt-section?locale=tr"
-          : "https://strapi.tayfundurmaz.net/api/nuxt-section?locale=en";
-      const response = await fetch(url);
-      const data = await response.json();
-
-      this.paragraphs = [
-        data.data.attributes.p1,
-        data.data.attributes.p2,
-        data.data.attributes.p3,
-        data.data.attributes.p4,
-        data.data.attributes.p5,
-        data.data.attributes.p6,
-        data.data.attributes.p7,
-      ];
+    data() {
+      return {
+        paragraphs: [],
+        images: [
+          "https://strapi.tayfundurmaz.net/uploads/java_Script_e27b16d476.png",
+          "https://strapi.tayfundurmaz.net/uploads/node_JS_9b0d3724cb.jpg",
+          "https://strapi.tayfundurmaz.net/uploads/reactjs7_d3941e0343.jpg",
+          "https://strapi.tayfundurmaz.net/uploads/react_Native_de0cd31d41.png",
+          "https://strapi.tayfundurmaz.net/uploads/next_JS_1348bc3310.jpeg",
+          "https://strapi.tayfundurmaz.net/uploads/php_aa1eafebb8.jpg",
+          "https://strapi.tayfundurmaz.net/uploads/python_9477997afe.jpg",
+        ],
+      };
     },
-  },
-};
+    watch: {
+      selectedLanguage: {
+        immediate: true,
+        handler(newLocale) {
+          this.fetchData(newLocale);
+        },
+      },
+    },
+    methods: {
+      async fetchData(locale) {
+        const url =
+          locale === "tr"
+            ? "https://strapi.tayfundurmaz.net/api/nuxt-section?locale=tr"
+            : "https://strapi.tayfundurmaz.net/api/nuxt-section?locale=en";
+        const response = await fetch(url);
+        const data = await response.json();
+
+        this.paragraphs = [
+          data.data.attributes.p1,
+          data.data.attributes.p2,
+          data.data.attributes.p3,
+          data.data.attributes.p4,
+          data.data.attributes.p5,
+          data.data.attributes.p6,
+          data.data.attributes.p7,
+        ];
+      },
+    },
+  };
 </script>
 
 <style scoped>
-    /* Section Genel Yapı */
   .section {
     display: flex;
     flex-direction: column;
@@ -75,10 +74,9 @@ export default {
     align-items: center;
     width: 100%;
     padding: 40px;
-    background-color: rgb(175, 175, 175); /* Arka plan rengi */
+    background-color: rgb(175, 175, 175); 
   }
 
-    /* Katman Genel Yapı */
   .layer {
     display: flex;
     justify-content: center;
@@ -90,21 +88,19 @@ export default {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     padding: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden; /* Resimlerin kenarlarının yuvarlanmasını engeller */
+    overflow: hidden;
   }
 
-    /* Katman Hover Efekti */
   .layer:hover {
     transform: translateY(-10px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   }
 
-    /* Resim Ayarları */
   .image {
     margin-right: 30px;
     flex-shrink: 0;
     position: relative;
-    z-index: 2; /* Resimlerin diğer öğelere öncelikli olarak görünmesini sağlar */
+    z-index: 2;
   }
 
   .image img {
@@ -114,17 +110,15 @@ export default {
     transition: transform 0.3s ease;
   }
 
-    /* Resim Hover Efekti */
   .image img:hover {
-    transform: scale(1.1); /* Resmi biraz büyütür */
+    transform: scale(1.1); 
   }
 
-    /* Metin Ayarları */
   .text {
     max-width: 500px;
     color: #333;
     text-align: left;
-    z-index: 1; /* Metinlerin alt kısımda olmasını sağlar */
+    z-index: 1; 
   }
 
   .text p {
@@ -136,12 +130,10 @@ export default {
     transition: color 0.3s ease;
   }
 
-    /* Metin Hover Efekti */
   .text p:hover {
     color: #007BFF;
   }
 
-    /* Dikey Çizgi Ayarları */
   .line-vertical {
     width: 2px;
     height: 100%;
@@ -150,7 +142,6 @@ export default {
     border-radius: 2px;
   }
 
-    /* Alternatif Katman Düzeni: Tek Taraf Resim, Diğer Taraf Metin */
   .layer:nth-child(odd) .image {
     order: 1;
   }
@@ -167,25 +158,24 @@ export default {
     order: 1;
   }
 
-    /* Responsive Tasarım: Mobil Uyumluluk */
   @media (max-width: 768px) {
-  .layer {
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-  }
+    .layer {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
 
-  .line-vertical {
-    display: none;
-  }
+    .line-vertical {
+      display: none;
+    }
 
-  .image {
-    margin-bottom: 20px;
-  }
+    .image {
+      margin-bottom: 20px;
+    }
 
-  .text {
-    max-width: 90%;
-    padding: 10px;
+    .text {
+      max-width: 90%;
+      padding: 10px;
+    }
   }
-}
 </style>

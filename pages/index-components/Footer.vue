@@ -1,5 +1,4 @@
 <template>
-    <!-- Footer -->
   <footer class="cv-footer">
     <p>{{ p }}</p>
   </footer>
@@ -23,11 +22,10 @@
 </script>
 
 <style scoped>
-    /* Footer Section */
   .cv-footer {
     font-family: 'Courier New', Courier, monospace;
     margin-top: 50px;
-    background-color: rgba(0, 0, 0, 0.8); /* Transparent black background */
+    background-color: rgba(0, 0, 0, 0.8); 
     color: white;
     text-align: center;
     padding: 20px;
